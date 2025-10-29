@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lititi.exams.web.dao.UserMapper">
+
+    <resultMap type="com.lititi.exams.web.entity.User" id="UserResultMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="BIGINT"/>
+        <result property="updateTime" column="update_time" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, phone, nickname, avatar, create_time, update_time
+    </sql>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="UserResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <!--通过手机号查询用户-->
+    <select id="selectByPhone" resultMap="UserResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO user(phone, nickname, avatar, create_time, update_time)
+        VALUES (#{phone}, #{nickname}, #{avatar}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        UPDATE user
+        <set>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                avatar = #{avatar},
+            </if>
+            update_time = #{updateTime}
+        </set>
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

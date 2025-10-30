@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- */
 
 @RestController
 @RequestMapping("/test")

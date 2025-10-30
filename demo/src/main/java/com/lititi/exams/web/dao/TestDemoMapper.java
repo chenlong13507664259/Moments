@@ -7,9 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * 演示文件
- */
 
 /**
  * (TestDemo)表数据库访问层

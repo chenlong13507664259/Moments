@@ -60,9 +60,9 @@
 - create_time: 创建时间
 - update_time: 更新时间
 
-### 接口文档
+### 核心接口
 
-### （1）动态发布接口
+### 动态发布接口
 请求地址: http://localhost:8080
 
 请求路径：/content/publish
@@ -88,7 +88,7 @@ Content-Type: application/json
 }
 
 
-### （2）朋友圈动态查询接口
+### 朋友圈动态查询接口
 请求地址：http://localhost:8080
 
 请求路径: /content/list

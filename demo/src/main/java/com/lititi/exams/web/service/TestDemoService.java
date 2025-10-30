@@ -7,7 +7,6 @@ import com.lititi.exams.web.entity.TestDemo;
 
 /**
  * (TestDemo)表服务接口
- *
  */
 public interface TestDemoService extends BaseService {
 

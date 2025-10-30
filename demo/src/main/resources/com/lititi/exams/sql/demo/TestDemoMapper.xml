@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lititi.exams.web.dao.TestDemoMapper">
 
-    <!--
-    /**
-    * 演示文件，请勿在此文件添加或者修改代码！！！
-    * 演示文件，请勿在此文件添加或者修改代码！！！
-    * 演示文件，请勿在此文件添加或者修改代码！！！
-    */
-    -->
+
 
     <resultMap type="com.lititi.exams.web.entity.TestDemo" id="BaseResultMap">
         <result property="id" column="id" jdbcType="BIGINT"/>

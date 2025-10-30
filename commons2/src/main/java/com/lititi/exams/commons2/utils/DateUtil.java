@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 日期公共类 提供与日期相关的公共方法，如日期格式化、字符串转为日期等。
- * 
  */
 public class DateUtil {
 

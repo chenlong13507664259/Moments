@@ -8,8 +8,6 @@ import com.lititi.exams.web.entity.TestDemo;
 /**
  * (TestDemo)表服务接口
  *
- * @author makejava
- * @since 2024-02-20 11:09:06
  */
 public interface TestDemoService extends BaseService {
 

@@ -8,8 +8,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * 手动注册bean
  *
- * @author kaiwen
- * @date 2021/04/13 10:57
  **/
 public class ManualRegistBeanUtil {
     /**

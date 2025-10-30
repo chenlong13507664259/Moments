@@ -1,7 +1,7 @@
 package com.lititi.exams.commons2.result;
 
 /**
- * JSON格式类 Created by bin on 2017/2/20.
+ * JSON格式类
  */
 public enum JsonCodeEnum {
     SUCCESS(1, "成功"), FAIL(-1, "失败"),

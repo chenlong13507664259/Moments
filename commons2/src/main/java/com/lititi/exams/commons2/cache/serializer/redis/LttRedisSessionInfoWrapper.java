@@ -6,9 +6,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * NOTE: 该类仅用于tomcat redis session 共享数据，读取之后的封装， 暂时不用于修改session修改
  *
- * @author Kevin
- * @version LttRedisSessionInfoWrapper.java, v 0.1 2021年2月13日 上午11:38:52
- * @company 杭州利提提
  */
 public class LttRedisSessionInfoWrapper implements Serializable {
 

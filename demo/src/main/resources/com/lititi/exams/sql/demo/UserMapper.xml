@@ -7,12 +7,13 @@
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
         <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
-        <result property="createTime" column="create_time" jdbcType="BIGINT"/>
-        <result property="updateTime" column="update_time" jdbcType="BIGINT"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, phone, nickname, avatar, create_time, update_time
+        id, phone, nickname, avatar, password, create_time, update_time
     </sql>
 
     <!--查询单个-->
@@ -33,8 +34,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO user(phone, nickname, avatar, create_time, update_time)
-        VALUES (#{phone}, #{nickname}, #{avatar}, #{createTime}, #{updateTime})
+        INSERT INTO user(phone, nickname, avatar, password, create_time, update_time)
+        VALUES (#{phone}, #{nickname}, #{avatar}, #{password}, #{createTime}, #{updateTime})
     </insert>
 
     <!--通过主键修改数据-->
@@ -49,6 +50,9 @@
             </if>
             <if test="avatar != null and avatar != ''">
                 avatar = #{avatar},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
             </if>
             update_time = #{updateTime}
         </set>

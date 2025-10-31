@@ -5,10 +5,8 @@ package com.lititi.exams.commons2.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lititi.exams.commons2.constant.Constant;
-import com.lititi.exams.commons2.enumeration.WhetherFlag;
 import com.lititi.exams.commons2.exception.LttException;
 import com.lititi.exams.commons2.log.LttLogger;
-import com.lititi.exams.commons2.object.PageParam;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;

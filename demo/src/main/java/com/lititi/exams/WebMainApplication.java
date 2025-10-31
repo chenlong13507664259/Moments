@@ -12,5 +12,4 @@ public class WebMainApplication {
         new SpringApplicationBuilder(WebMainApplication.class).properties(locationPath).build().run(args);
         System.out.println("启动成功!");
     }
-
 }

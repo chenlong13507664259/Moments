@@ -3,6 +3,7 @@ package com.lititi.exams.web.dao;
 import com.lititi.exams.web.entity.Friend;
 import com.lititi.exams.commons2.annotation.Master;
 import com.lititi.exams.commons2.annotation.Slave;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author chenlong
  * date 2025-10-29
  */
+@Mapper
 public interface FriendMapper {
 
     /**

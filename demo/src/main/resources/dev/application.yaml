@@ -39,7 +39,7 @@ ltt:
           username: root
           password: "123456"
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: "jdbc:mysql://localhost:3306/exams?charset=utf8mb4&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true"
+          url: "jdbc:mysql://localhost:3306/exams?charset=utf8mb4&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai"
           type: com.alibaba.druid.pool.DruidDataSource
           #   数据源其他配置
           initialSize: 5
@@ -59,7 +59,7 @@ ltt:
           username: root
           password: "123456"
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: "jdbc:mysql://localhost:3306/exams?charset=utf8mb4&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true"
+          url: "jdbc:mysql://localhost:3306/exams?charset=utf8mb4&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai"
           type: com.alibaba.druid.pool.DruidDataSource
           #   数据源其他配置
           initialSize: 5

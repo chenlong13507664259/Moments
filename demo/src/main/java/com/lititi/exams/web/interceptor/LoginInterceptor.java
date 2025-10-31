@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lititi.exams.commons2.enumeration.RedirectPageType;
 import com.lititi.exams.commons2.exception.LttException;
 import com.lititi.exams.commons2.log.LttLogger;
+import com.lititi.exams.commons2.utils.JwtUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 不进行任何判断，直接放行（两个指定的链接）
         allExcludeUri.add("/content/publish");
         allExcludeUri.add("/content/list");
+
+        // 添加登录注册相关接口
+        allExcludeUri.add("/user/login");
+        allExcludeUri.add("/user/register");
 
     }
 
@@ -73,11 +78,16 @@ public class LoginInterceptor implements HandlerInterceptor {
                 returnNotLoginJSONObject(request, response);
                 return false;
             }
-            // 添加token验证逻辑
-            // if(!tokenService.isValid(token)) {
-            //     returnNotLoginJSONObject(request, response);
-            //     return false;
-            // }
+
+            // 验证token有效性
+            if(!JwtUtil.validateToken(token)) {
+                returnNotLoginJSONObject(request, response);
+                return false;
+            }
+
+            // 可以将用户ID存入request属性供后续使用
+            Long userId = JwtUtil.parseToken(token);
+            request.setAttribute("userId", userId);
         }
 
         // 其他所有请求都返回非法访问
@@ -101,6 +111,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 检查 /content/list (只需要userId参数)
         if ("/content/list".equals(uri)) {
             return hasUserIdParam(queryString);
+        }
+
+        // 检查登录注册接口
+        if ("/user/login".equals(uri) || "/user/register".equals(uri)) {
+            return "POST".equalsIgnoreCase(method);
         }
 
         return false;

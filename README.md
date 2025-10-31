@@ -2,28 +2,34 @@
 
 ## 项目简介
 
-本项目是一个基于Java开发的社交平台朋友圈动态功能模块，实现了用户发布动态和查看好友动态的核心功能。
+本项目是一个基于Java开发的社交平台朋友圈动态功能模块，实现了用户注册登录、发布动态和查看好友动态的核心功能。
 
 
 ## 功能特性
 
 ### 核心功能
 
-1. **动态发布**
+1. **用户注册登录**
+   - 支持手机号注册用户
+   - 支持用户登录并生成访问令牌
+   - 密码安全存储和验证
+
+2. **动态发布**
    - 支持发布动态
    - 文字内容限制在500字符以内
    - 最多支持9张图片
    - 支持地理位置信息
-   - 媒体资源已通过对象存储处理完成
+   - 媒体资源通过对象存储处理
 
-2. **朋友圈动态查看**
+3. **朋友圈动态查看**
    - 支持获取朋友圈动态
    - 显示用户及其好友的最新动态
    - 按发布时间倒序排列，保持最新动态在上
    - 默认每页10条记录
 
-3. **安全控制**
-   - 仅允许指定的API访问
+4. **安全控制**
+   - 用户需要登录获取token后才能访问特定接口
+   - 仅允许指定请求的API访问
    - 其他未授权访问均返回"非法访问！"
 
 ## 技术栈
@@ -42,6 +48,7 @@
 - phone: 手机号
 - nickname: 昵称
 - avatar: 头像URL
+- password: 密码
 - create_time: 创建时间
 - update_time: 更新时间
 
@@ -60,7 +67,73 @@
 - create_time: 创建时间
 - update_time: 更新时间
 
-### 核心接口
+## 核心接口
+
+### 用户注册接口
+请求地址: http://localhost:8080
+
+请求路径：/user/register
+
+请求方式：POST
+
+请求参数：
+- phone: 手机号
+- nickname: 昵称
+- password: 密码
+
+
+响应示例：（注：密码不能暴露，已做安全处理，显示为null）
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "注册成功",
+"mdata": {
+"user": {
+"id": 6,
+"phone": "13800138006",
+"nickname": "小华",
+"avatar": "",
+"password": null,
+"createTime": "2025-10-31 21:57:44",
+"updateTime": "2025-10-31 21:57:44"
+}
+}
+}
+
+
+
+
+### 用户登录接口
+请求地址: http://localhost:8080
+
+请求路径：/user/login
+
+请求方式：POST
+
+请求参数：
+- phone: 手机号
+- password: 密码
+
+响应示例：（注：密码不能暴露，已做安全处理，显示为null）
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "登录成功",
+"mdata": {
+"user": {
+"id": 1,
+"phone": "13800138001",
+"nickname": "小明",
+"avatar": "https://example.com/avatar1.jpg",
+"password": null,
+"createTime": "2025-10-29 18:30:00",
+"updateTime": "2025-10-29 18:30:00"
+},
+"token": "1_466002d7-9cd0-44ec-b4ff-342319b8400b"
+}
+}
+
+
 
 ### 动态发布接口
 请求地址: http://localhost:8080
@@ -77,6 +150,8 @@ Content-Type: application/json
 "images": "[\"http://example.com/test1.jpg\", \"http://example.com/test2.jpg\"]",
 "location": "测试位置"
 }
+
+注意：需要在请求头中添加Authorization字段，值为登录时获取的token。
 
 响应参数：如
 {
@@ -99,6 +174,8 @@ Content-Type: application/json
 http://localhost:8080/content/list?userId=1&pageNo=1&pageSize=10
 或
 http://localhost:8080/content/list?userId=1 (默认参数pageNo=1,pageSize=10)
+
+注意：需要在请求头中添加Authorization字段，值为登录时获取的token。
 
 响应参数：如
 {
@@ -204,24 +281,17 @@ http://localhost:8080/content/list?userId=1 (默认参数pageNo=1,pageSize=10)
 5. 运行项目: `java -jar demo/target/demo.jar --spring.profiles.active=dev`
 
 
-
 ## 后续计划
 
 本项目作为社交平台的模块，未来将逐步拓展以下功能：
-- 用户登录认证
 - 好友管理（添加/删除好友）
 - 动态点赞和评论
 - 用户个人信息管理
 - 更丰富的内容类型支持
-
+- 更多功能将后续添加......
 
 ## 注意事项
 
 1. 所有未明确允许的请求都将返回"非法访问！"
-2. 更多功能将后续添加......
-
-
-
-
-
-
+2. 用户需要先注册并登录获取token，才能访问动态相关接口
+3. 更多功能将后续添加......

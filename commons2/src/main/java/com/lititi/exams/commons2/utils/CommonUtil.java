@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, 杭州利提提. All rights reserved.
+ * All rights reserved.
  */
 package com.lititi.exams.commons2.utils;
 
@@ -30,10 +30,6 @@ import java.util.regex.Pattern;
 /**
  * 公共工具类。 提供空判断、集合、字符串、类型转换、解析等公共方法。
  *
- * @author Kevin
- * @company 杭州利提提
- * @date 2018年3月22日 下午3:17:52
- * @since 1.0
  */
 
 public class CommonUtil {

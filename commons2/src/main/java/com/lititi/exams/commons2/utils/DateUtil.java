@@ -15,11 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 日期公共类 提供与日期相关的公共方法，如日期格式化、字符串转为日期等。
- * 
- * @company 杭州利提提
- * @author Kevin
- * @since 1.0
- * @date 2019年3月22日 下午2:31:26
  */
 public class DateUtil {
 

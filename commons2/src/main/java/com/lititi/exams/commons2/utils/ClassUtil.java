@@ -11,12 +11,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
 
-/**
- * 
- * @company 杭州利提提科技有限公司
- * @author Kevin
- * @version ClassUtil.java, v 0.1 May 30, 2019 3:33:41 PM
- */
+
+
 public class ClassUtil {
 
     /**

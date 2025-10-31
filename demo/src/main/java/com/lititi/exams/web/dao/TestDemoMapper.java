@@ -7,17 +7,10 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- */
 
 /**
  * (TestDemo)表数据库访问层
  *
- * @author makejava
- * @since 2024-02-20 11:08:56
  */
 public interface TestDemoMapper {
 

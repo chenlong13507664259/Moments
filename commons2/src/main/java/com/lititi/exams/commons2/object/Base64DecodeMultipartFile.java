@@ -7,9 +7,6 @@ import java.util.Base64;
 
 /**
  * base64转为multipartFile
- * Created by ljp on 2020/6/18 16:28
- *
- * @author ljp
  */
 public class Base64DecodeMultipartFile implements MultipartFile {
     private final byte[] imgContent;

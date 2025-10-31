@@ -3,9 +3,6 @@ package com.lititi.exams.commons2.enumeration;
 /**
  * 表示是否的状态
  * 
- * @company 杭州利提提
- * @author LuoJiang
- * @version WhetherFlag.java, v 0.1 2019年2月16日 下午2:15:58
  */
 public enum WhetherFlag {
 

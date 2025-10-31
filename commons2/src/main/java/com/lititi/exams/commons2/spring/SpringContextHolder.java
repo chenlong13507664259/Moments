@@ -12,12 +12,7 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.PropertySources;
 import org.springframework.stereotype.Component;
 
-/**
- * 
- * @company 杭州利提提科技有限公司
- * @author Kevin
- * @version SpringContextHolder.java, v 0.1 May 30, 2019 3:27:40 PM
- */
+
 @Component
 public class SpringContextHolder implements ApplicationContextAware {
 

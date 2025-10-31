@@ -3,17 +3,10 @@ package com.lititi.exams.web.service;
 import com.lititi.exams.commons2.service.BaseService;
 import com.lititi.exams.web.entity.TestDemo;
 
-/**
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- * 演示文件，请勿在此文件添加或者修改代码！！！
- */
+
 
 /**
  * (TestDemo)表服务接口
- *
- * @author makejava
- * @since 2024-02-20 11:09:06
  */
 public interface TestDemoService extends BaseService {
 

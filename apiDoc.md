@@ -1,6 +1,72 @@
 ### 接口文档
 
-### （1）动态发布接口
+### (1)用户注册接口
+请求地址: http://localhost:8080
+
+请求路径：/user/register
+
+请求方式：POST
+
+请求参数：
+- phone: 手机号
+- nickname: 昵称
+- password: 密码
+
+
+响应示例：（注：密码不能暴露，已做安全处理，显示为null）
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "注册成功",
+"mdata": {
+"user": {
+"id": 6,
+"phone": "13800138006",
+"nickname": "小华",
+"avatar": "",
+"password": null,
+"createTime": "2025-10-31 21:57:44",
+"updateTime": "2025-10-31 21:57:44"
+}
+}
+}
+
+
+
+
+### (2)用户登录接口
+请求地址: http://localhost:8080
+
+请求路径：/user/login
+
+请求方式：POST
+
+请求参数：
+- phone: 手机号
+- password: 密码
+
+响应示例：（注：密码不能暴露，已做安全处理，显示为null）
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "登录成功",
+"mdata": {
+"user": {
+"id": 1,
+"phone": "13800138001",
+"nickname": "小明",
+"avatar": "https://example.com/avatar1.jpg",
+"password": null,
+"createTime": "2025-10-29 18:30:00",
+"updateTime": "2025-10-29 18:30:00"
+},
+"token": "1_466002d7-9cd0-44ec-b4ff-342319b8400b"
+}
+}
+
+
+
+### (3)动态发布接口
 请求地址: http://localhost:8080
 
 请求路径：/content/publish
@@ -26,7 +92,7 @@ Content-Type: application/json
 }
 
 
-### （2）朋友圈动态查询接口
+### (4)朋友圈动态查询接口
 请求地址：http://localhost:8080
 
 请求路径: /content/list

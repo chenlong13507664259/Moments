@@ -74,6 +74,9 @@
 请求方式：POST
 Content-Type: application/json
 
+请求头：
+- token: 登录时获取的访问令牌
+
 请求参数：如
 {
 "userId": 1,
@@ -98,6 +101,9 @@ Content-Type: application/json
 请求路径: /content/list
 
 请求方式：GET
+
+请求头：
+- token: 登录时获取的访问令牌
 
 请求参数：如
 http://localhost:8080/content/list?userId=1&pageNo=1&pageSize=10
@@ -196,6 +202,84 @@ http://localhost:8080/content/list?userId=1 (默认参数pageNo=1,pageSize=10)
 "pageNo": 1,
 "pageSize": 10,
 "details": "已获取最新的朋友圈动态"
+}
+
+
+### (5)添加好友接口
+请求地址: http://localhost:8080
+
+请求路径：/user/friend/add
+
+请求方式：POST
+
+请求参数：
+- friendId: 好友ID
+
+请求头：
+- token: 登录时获取的访问令牌
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "添加好友成功"
+}
+
+错误响应示例：
+{
+"redirectPageType": 0,
+"result": 0,
+"message": "操作失败: 已经是好友关系"
+}
+
+
+### (6)删除好友接口
+请求地址: http://localhost:8080
+
+请求路径：/user/friend/delete
+
+请求方式：POST
+
+请求参数：
+- friendId: 好友ID
+
+请求头：
+- token: 登录时获取的访问令牌
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "删除好友成功"
+}
+
+错误响应示例：
+{
+"redirectPageType": 0,
+"result": 0,
+"message": "操作失败: 好友关系不存在"
+}
+
+
+### (7)获取好友列表接口
+请求地址：http://localhost:8080
+
+请求路径：/user/friend/list
+
+请求方式：GET
+
+请求头：
+- token: 登录时获取的访问令牌
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "获取好友列表成功",
+"mdata": {
+"friendIds": [2, 3, 5],
+"friendCount": 3
+}
 }
 
 

@@ -4,6 +4,9 @@ import com.lititi.exams.commons2.object.CommonResultObject;
 import com.lititi.exams.commons2.utils.JwtUtil;
 import com.lititi.exams.web.entity.User;
 import com.lititi.exams.web.service.UserService;
+import com.lititi.exams.web.service.FriendService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FriendService friendService;
 
     /**
      * 用户注册
@@ -104,6 +110,144 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             result.setResult(0);
             result.setMessage("登录失败: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * 添加好友
+     * @param friendId 好友ID
+     * @param request HTTP请求对象
+     * @return 添加结果
+     */
+    @PostMapping("/friend/add")
+    public CommonResultObject addFriend(@RequestParam Long friendId,
+                                       HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 参数校验
+            if (friendId == null) {
+                result.setResult(0);
+                result.setMessage("好友ID不能为空");
+                return result;
+            }
+
+            // 调用服务层添加好友
+            boolean success = friendService.addFriend(userId, friendId);
+
+            if (success) {
+                result.setResult(1);
+                result.setMessage("添加好友成功");
+            } else {
+                result.setResult(0);
+                result.setMessage("添加好友失败");
+            }
+
+        } catch (IllegalArgumentException e) {
+            result.setResult(0);
+            result.setMessage("参数错误: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            result.setResult(0);
+            result.setMessage("操作失败: " + e.getMessage());
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("添加好友失败: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * 删除好友
+     * @param friendId 好友ID
+     * @param request HTTP请求对象
+     * @return 删除结果
+     */
+    @PostMapping("/friend/delete")
+    public CommonResultObject deleteFriend(@RequestParam Long friendId,
+                                          HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 参数校验
+            if (friendId == null) {
+                result.setResult(0);
+                result.setMessage("好友ID不能为空");
+                return result;
+            }
+
+            // 调用服务层删除好友
+            boolean success = friendService.deleteFriend(userId, friendId);
+
+            if (success) {
+                result.setResult(1);
+                result.setMessage("删除好友成功");
+            } else {
+                result.setResult(0);
+                result.setMessage("删除好友失败");
+            }
+
+        } catch (IllegalArgumentException e) {
+            result.setResult(0);
+            result.setMessage("参数错误: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            result.setResult(0);
+            result.setMessage("操作失败: " + e.getMessage());
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("删除好友失败: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * 获取好友列表
+     * @param request HTTP请求对象
+     * @return 好友列表
+     */
+    @GetMapping("/friend/list")
+    public CommonResultObject getFriendList(HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 调用服务层获取好友列表
+            List<Long> friendIds = friendService.getFriendIds(userId);
+
+            result.setResult(1);
+            result.setMessage("获取好友列表成功");
+            result.addObject("friendIds", friendIds);
+            result.addObject("friendCount", friendIds.size());
+
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("获取好友列表失败: " + e.getMessage());
         }
 
         return result;

@@ -42,6 +42,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         allExcludeUri.add("/user/login");
         allExcludeUri.add("/user/register");
 
+        // 添加好友相关接口到需要token验证的列表
+        needTokenUri.add("/friend/add");
+        needTokenUri.add("/friend/delete");
+        needTokenUri.add("/friend/list");
+
     }
 
     @Override

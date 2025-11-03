@@ -1,6 +1,6 @@
 #debug: true
 server:
-  port: 8060
+  port: 8080
   servlet:
     session:
       timeout: P30D

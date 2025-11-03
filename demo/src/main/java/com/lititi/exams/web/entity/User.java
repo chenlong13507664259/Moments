@@ -32,7 +32,6 @@ public class User implements Serializable {
      */
     private String avatar;
 
-
     /**
      * 密码
      */

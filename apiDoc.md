@@ -283,3 +283,101 @@ http://localhost:8080/content/list?userId=1 (默认参数pageNo=1,pageSize=10)
 }
 
 
+### (8)获取用户个人信息接口
+请求地址：http://localhost:8080
+
+请求路径：/user/profile
+
+请求方式：GET
+
+请求头：
+- token: 登录时获取的访问令牌
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "获取用户信息成功",
+"mdata": {
+"user": {
+"id": 1,
+"phone": "13800138001",
+"nickname": "小明",
+"avatar": "https://example.com/avatar1.jpg",
+"password": null,
+"createTime": "2025-10-29 18:30:00",
+"updateTime": "2025-10-29 18:30:00"
+}
+}
+}
+
+
+### (9)更新用户个人信息接口
+请求地址：http://localhost:8080
+
+请求路径：/user/profile/update
+
+请求方式：POST
+Content-Type: application/json
+
+请求头：
+- token: 登录时获取的访问令牌
+
+请求参数：
+{
+"nickname": "新昵称",
+"avatar": "https://example.com/new-avatar.jpg"
+}
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "更新个人信息成功",
+"mdata": {
+"user": {
+"id": 1,
+"phone": "13800138001",
+"nickname": "新昵称",
+"avatar": "https://example.com/new-avatar.jpg",
+"password": null,
+"createTime": "2025-10-29 18:30:00",
+"updateTime": "2025-11-03 10:30:00"
+}
+}
+}
+
+
+### (10)更新用户头像接口
+请求地址：http://localhost:8080
+
+请求路径：/user/avatar/update
+
+请求方式：POST
+Content-Type: application/x-www-form-urlencoded
+
+请求头：
+- token: 登录时获取的访问令牌
+
+请求参数：
+- avatarUrl: 新头像URL
+
+响应示例：
+{
+"redirectPageType": 0,
+"result": 1,
+"message": "更新头像成功",
+"mdata": {
+"user": {
+"id": 1,
+"phone": "13800138001",
+"nickname": "小明",
+"avatar": "https://example.com/new-avatar.jpg",
+"password": null,
+"createTime": "2025-10-29 18:30:00",
+"updateTime": "2025-11-03 10:35:00"
+}
+}
+}
+
+

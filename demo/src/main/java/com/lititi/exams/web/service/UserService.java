@@ -43,4 +43,21 @@ public interface UserService {
      * @return 用户对象
      */
     User getUserById(Long id);
+
+    /**
+     * 更新用户个人信息
+     *
+     * @param user 用户对象（包含需要更新的个人信息）
+     * @return 更新后的用户对象
+     */
+    User updateUserProfile(User user);
+
+    /**
+     * 更新用户头像
+     *
+     * @param userId 用户ID
+     * @param avatarUrl 头像URL
+     * @return 更新后的用户对象
+     */
+    User updateAvatar(Long userId, String avatarUrl);
 }

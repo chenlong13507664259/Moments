@@ -252,4 +252,127 @@ public class UserController extends BaseController {
 
         return result;
     }
+
+    /**
+     * 获取用户个人信息
+     * @param request HTTP请求对象
+     * @return 用户个人信息
+     */
+    @GetMapping("/profile")
+    public CommonResultObject getUserProfile(HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 调用服务层获取用户信息
+            User user = userService.getUserById(userId);
+            if (user != null) {
+                // 清除密码信息
+                user.setPassword(null);
+                result.setResult(1);
+                result.setMessage("获取用户信息成功");
+                result.addObject("user", user);
+            } else {
+                result.setResult(0);
+                result.setMessage("用户不存在");
+            }
+
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("获取用户信息失败: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * 更新用户个人信息
+     * @param user 用户对象（包含需要更新的个人信息）
+     * @param request HTTP请求对象
+     * @return 更新结果
+     */
+    @PostMapping("/profile/update")
+    public CommonResultObject updateUserProfile(@RequestBody User user, HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 设置用户ID
+            user.setId(userId);
+
+            // 调用服务层更新用户信息
+            User updatedUser = userService.updateUserProfile(user);
+
+            result.setResult(1);
+            result.setMessage("更新个人信息成功");
+            result.addObject("user", updatedUser);
+
+        } catch (IllegalArgumentException e) {
+            result.setResult(0);
+            result.setMessage("参数错误: " + e.getMessage());
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("更新个人信息失败: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * 更新用户头像
+     * @param avatarUrl 头像URL
+     * @param request HTTP请求对象
+     * @return 更新结果
+     */
+    @PostMapping("/avatar/update")
+    public CommonResultObject updateAvatar(@RequestParam String avatarUrl, HttpServletRequest request) {
+        CommonResultObject result = new CommonResultObject();
+
+        try {
+            // 从请求中获取当前用户ID
+            Long userId = (Long) request.getAttribute("userId");
+            if (userId == null) {
+                result.setResult(0);
+                result.setMessage("用户未登录");
+                return result;
+            }
+
+            // 参数校验
+            if (avatarUrl == null || avatarUrl.trim().isEmpty()) {
+                result.setResult(0);
+                result.setMessage("头像URL不能为空");
+                return result;
+            }
+
+            // 调用服务层更新头像
+            User updatedUser = userService.updateAvatar(userId, avatarUrl);
+
+            result.setResult(1);
+            result.setMessage("更新头像成功");
+            result.addObject("user", updatedUser);
+
+        } catch (IllegalArgumentException e) {
+            result.setResult(0);
+            result.setMessage("参数错误: " + e.getMessage());
+        } catch (Exception e) {
+            result.setResult(0);
+            result.setMessage("更新头像失败: " + e.getMessage());
+        }
+
+        return result;
+    }
 }

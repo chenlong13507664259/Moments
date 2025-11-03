@@ -75,4 +75,59 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         return userMapper.selectById(id);
     }
+
+    @Override
+    public User updateUserProfile(User user) {
+        if (user == null || user.getId() == null) {
+            throw new IllegalArgumentException("用户ID不能为空");
+        }
+
+        // 查询原用户信息
+        User existingUser = userMapper.selectById(user.getId());
+        if (existingUser == null) {
+            throw new RuntimeException("用户不存在");
+        }
+
+        // 更新个人信息字段（只更新非空字段）
+        if (user.getNickname() != null && !user.getNickname().trim().isEmpty()) {
+            existingUser.setNickname(user.getNickname());
+        }
+        if (user.getAvatar() != null && !user.getAvatar().trim().isEmpty()) {
+            existingUser.setAvatar(user.getAvatar());
+        }
+
+        // 更新时间
+        existingUser.setUpdateTime(new Date());
+
+        // 执行更新
+        userMapper.update(existingUser);
+
+        // 清除密码信息再返回
+        existingUser.setPassword(null);
+        return existingUser;
+    }
+
+    @Override
+    public User updateAvatar(Long userId, String avatarUrl) {
+        if (userId == null) {
+            throw new IllegalArgumentException("用户ID不能为空");
+        }
+
+        // 查询原用户信息
+        User existingUser = userMapper.selectById(userId);
+        if (existingUser == null) {
+            throw new RuntimeException("用户不存在");
+        }
+
+        // 更新头像
+        existingUser.setAvatar(avatarUrl);
+        existingUser.setUpdateTime(new Date());
+
+        // 执行更新
+        userMapper.update(existingUser);
+
+        // 清除密码信息再返回
+        existingUser.setPassword(null);
+        return existingUser;
+    }
 }

@@ -43,6 +43,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         needTokenUri.add("/user/friend/add");
         needTokenUri.add("/user/friend/delete");
         needTokenUri.add("/user/friend/list");
+        needTokenUri.add("/user/profile");
+        needTokenUri.add("/user/profile/update");
+        needTokenUri.add("/user/avatar/update");
     }
 
     @Override
